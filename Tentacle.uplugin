@@ -1,0 +1,59 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "Tentacle",
+	"Description": "For communicating with the Tentacle system.",
+	"Category": "Virtual Production",
+	"CreatedBy": "Backside4Charter & Deadsun",
+	"CreatedByURL": "https://www.unrealengine.com/marketplace/en-US/product/tentacle",
+	"DocsURL": "https://www.unrealengine.com/marketplace/en-US/product/tentacle",
+	"MarketplaceURL": "https://www.unrealengine.com/marketplace/en-US/product/tentacle",
+	"SupportURL": "mailto:backside4charter@gmail.com",
+	"EngineVersion": "5.5.0",
+	"CanContainContent": false,
+	"Installed": true,
+	"IsBetaVersion": true,
+	"Modules": [
+		{
+			"Name": "Tentacle",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64",
+				"Mac"
+			]
+		},
+		{
+			"Name": "TentacleWebSocket",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64",
+				"Mac"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "GameplayAbilities",
+			"Enabled": true
+		},
+		{
+			"Name": "MassEntity",
+			"Enabled": true
+		},
+		{
+			"Name": "MassGameplay",
+			"Enabled": true
+		},
+		{
+			"Name": "MassAI",
+			"Enabled": true
+		},
+		{
+			"Name": "MassCrowd",
+			"Enabled": true
+		}
+	]
+}

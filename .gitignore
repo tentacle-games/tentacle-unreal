@@ -1,0 +1,35 @@
+# IDE Files
+.vs/
+.idea/
+
+# Project/Local Files
+/*.xcodeproj
+/*.xcworkspace
+/*.sln
+/*.sln.*
+/Config/DefaultEditor.ini
+/Config/DefaultEditorPerProjectUserSettings.ini
+/Config/DefaultEditorSettings.ini
+/Config/UnrealInstallDirectory.txt
+/Scripts/__pycache__/
+/Scripts/venv/
+
+# Built files
+/ArchivedBuilds/
+/Binaries/
+/Build/
+/Saved/
+Intermediate/
+DerivedDataCache/
+*_BuiltData.uasset
+!Build/*/PakBlacklist*.txt
+
+# Plugins
+/Plugins/Developer/RiderLink/
+/Plugins/AutoSizeComments/ASCCache/
+/Plugins/*/Binaries/*
+!/Plugins/*/Binaries/ThirdParty/
+
+# Logs
+/Build.log
+
