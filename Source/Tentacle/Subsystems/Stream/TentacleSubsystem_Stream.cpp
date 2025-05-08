@@ -120,7 +120,7 @@ UTentacleSubsystem_Stream::HandleMsg_Event(const UTentacleMsgIn* Msg)
 {
 	// Get the platform from the data.
 	auto Platform = EStreamPlatform::Unknown;
-	jsonFieldEnum(EStreamPlatform, Platform, Msg->Data, "$platform");
+	jsonFieldEnum(EStreamPlatform, Platform, Msg->Data, "event", "$platform");
 
 	switch (Platform)
 	{
@@ -190,9 +190,12 @@ UTentacleSubsystem_Stream::HandleMsg_Event_Kick(const UTentacleMsgIn* Msg)
 void
 UTentacleSubsystem_Stream::HandleMsg_Event_Twitch(const UTentacleMsgIn* Msg)
 {
+	FJsonObjectPtr EventJson;
+	jsonField(FJsonObjectPtr, EventJson, Msg->Data, "event");
+
 	// Get the event type from the data.
 	auto EventType = ETwitchEventType::Unknown;
-	jsonFieldEnum(ETwitchEventType, EventType, Msg->Data, "event", "$type");
+	jsonFieldEnum(ETwitchEventType, EventType, EventJson, "$type");
 
 	const auto InstigatedBy = UpsertViewer(Msg);
 
@@ -201,14 +204,14 @@ UTentacleSubsystem_Stream::HandleMsg_Event_Twitch(const UTentacleMsgIn* Msg)
 	{
 	case ETwitchEventType::ChannelCheer: {
 		const auto TwitchEvent = NewObject<UTwitchEvent_Cheer>();
-		TwitchEvent->SetFromJson(Msg->Data);
+		TwitchEvent->SetFromJson(EventJson);
 		OnTwitch_Cheer.Broadcast(TwitchEvent, InstigatedBy);
 		PlatformEvent = TwitchEvent;
 		break;
 	}
 	case ETwitchEventType::ChannelFollow: {
 		const auto TwitchEvent = NewObject<UTwitchEvent_Follow>();
-		TwitchEvent->SetFromJson(Msg->Data);
+		TwitchEvent->SetFromJson(EventJson);
 		OnTwitch_Follow.Broadcast(TwitchEvent, InstigatedBy);
 		PlatformEvent = TwitchEvent;
 		break;
@@ -216,28 +219,28 @@ UTentacleSubsystem_Stream::HandleMsg_Event_Twitch(const UTentacleMsgIn* Msg)
 	case ETwitchEventType::ChannelRaid: {
 		bIsRaidOngoing = true;
 		const auto TwitchEvent = NewObject<UTwitchEvent_Raid>();
-		TwitchEvent->SetFromJson(Msg->Data);
+		TwitchEvent->SetFromJson(EventJson);
 		OnTwitch_Raid.Broadcast(TwitchEvent, InstigatedBy);
 		PlatformEvent = TwitchEvent;
 		break;
 	}
 	case ETwitchEventType::ChannelChannelPointsCustomRewardRedemptionAdd: {
 		const auto TwitchEvent = NewObject<UTwitchEvent_RedemptionAdd>();
-		TwitchEvent->SetFromJson(Msg->Data);
+		TwitchEvent->SetFromJson(EventJson);
 		OnTwitch_RedemptionAdd.Broadcast(TwitchEvent, InstigatedBy);
 		PlatformEvent = TwitchEvent;
 		break;
 	}
 	case ETwitchEventType::ChannelSubscribe: {
 		const auto TwitchEvent = NewObject<UTwitchEvent_Subscription>();
-		TwitchEvent->SetFromJson(Msg->Data);
+		TwitchEvent->SetFromJson(EventJson);
 		OnTwitch_Subscription.Broadcast(TwitchEvent, InstigatedBy);
 		PlatformEvent = TwitchEvent;
 		break;
 	}
 	case ETwitchEventType::ChannelSubscriptionGift: {
 		const auto TwitchEvent = NewObject<UTwitchEvent_SubscriptionGift>();
-		TwitchEvent->SetFromJson(Msg->Data);
+		TwitchEvent->SetFromJson(EventJson);
 		OnTwitch_SubscriptionGift.Broadcast(TwitchEvent, InstigatedBy);
 		PlatformEvent = TwitchEvent;
 		break;

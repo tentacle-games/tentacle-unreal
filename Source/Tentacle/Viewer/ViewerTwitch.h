@@ -76,14 +76,14 @@ struct TENTACLE_API FViewerTwitch
 
 		jsonField(FName, Id, Json, "id");
 		jsonField(FString, Name, Json, "name");
-		jsonField(FString, DisplayName, Json, "display_name");
+		jsonField(FString, DisplayName, Json, "displayName");
 
-		jsonFieldEnum(ETwitchBroadcasterType, BroadcasterType, Json, "broadcaster_type");
+		jsonFieldEnum(ETwitchBroadcasterType, BroadcasterType, Json, "broadcasterType");
 		jsonFieldOptional(FLinearColor, Color, Json, "color"); // TODO: Generate random color on backend if not set.
-		jsonField(FDateTime, CreatedAt, Json, "created_at");
+		jsonField(FDateTime, CreatedAt, Json, "createdAt");
 		jsonField(FString, Description, Json, "description");
-		jsonField(FString, OfflineImageUrl, Json, "offline_image_url");
-		jsonField(FString, ProfileImageUrl, Json, "profile_image_url");
+		jsonField(FString, OfflineImageUrl, Json, "offlineImageUrl");
+		jsonField(FString, ProfileImageUrl, Json, "profileImageUrl");
 
 		FJsonObjectPtr SubscriptionJson;
 		jsonFieldOptional(FJsonObjectPtr, SubscriptionJson, Json, "subscription");
